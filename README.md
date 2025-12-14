@@ -33,7 +33,7 @@ This timeline details the plan from initial setup to MVP delivery and submission
 
 | Phase | Duration | Week(s) in Bootcamp | Key Deliverables & Focus |
 | :--- | :--- | :--- | :--- |
-| **Phase 1: Setup & Planning** | 1 Week | **Week 1** | **Completed:** GitHub Repository and Notion project space established. Defined Goals, Features, Problem, and Initial Timeline. |
+| **Phase 1: Setup & Planning** | 1 Week | **Week 1** | GitHub Repository and Notion project space established. Defined Goals, Features, Problem, and Initial Timeline. |
 | **Phase 2: Focused ID & UI/UX** | 1 Week | **Week 2** | Detailed Instructional Design for Age 4/5 core games. Finalized full UI/UX mockups for main app screens and two core games. |
 | **Phase 3: Core System & Asset Creation** | 2 Weeks | **Week 3-4** | **Week 3:** Develop backend structure and implement **Rewards System** logic. **Week 4:** Full development of the Child-Friendly UI and completion of all Art Assets for Age 4/5 core activities. |
 | **Phase 4: MVP Implementation & Integration** | 1 Week | **Week 5** | Fully implement and integrate the **Age 4 (Alphabet Adventure)** and **Age 5 (Word Builder)** activities. Complete the Parent Dashboard MVP. |
