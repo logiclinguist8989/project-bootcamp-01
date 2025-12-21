@@ -46,3 +46,23 @@ This timeline details the plan from initial setup to MVP delivery and submission
 * **Instructional Design (ID):** Learned the fundamental models and principles of ID, which informed the structured, competency-based curriculum mapping for Kukhuri-Ka.
 * **Educational Content vs. General Multimedia:** Understood the critical distinctions between engaging general content and content specifically designed for measurable educational outcomes.
 * **Collaborative Setup:** Successfully established the project workspace using GitHub for version control and Notion for high-level planning.
+---
+
+## 🐍 Week 2: Python Implementation (Math Safari)
+
+For this week's assignment, we have developed a functional Python script that serves as the logic engine for the "Age 4-5 Numeracy" module of Kukhuri-Ka.
+
+### 📂 File Configuration
+* **`math_safari.py`**: The core Python script containing the game logic.
+* **`README.md`**: Updated to include technical specifications and team contributions.
+
+### 🛠️ Technical Features
+* **Dynamic Logic:** Uses the `random` module to generate unique addition puzzles every time the game is played.
+* **Error Handling:** Includes `try-except` blocks and input validation to ensure the program doesn't crash if a user enters non-numeric data.
+* **User Experience:** Integrated the `time` module to create natural pauses, making the text-based interface more child-friendly.
+* **Gamification:** A tracking system that tallies "Bananas" (points) and awards a "Gold Chicken Badge" for perfect scores.
+
+### 👥 Team Contributions (Week 2)
+* **Saksham Subedi (Team Manager):** Initial script architecture and GitHub workflow management.
+* **Ayush Hamal (Developer):** Implemented core math logic, random generator, and scoring system.
+* **Oshin Thapa Magar (Documentation & QA):** Finalized the `README.md` technical documentation and verified the code's error-handling capabilities.
