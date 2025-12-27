@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard · Kukhuri-Ka</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/dashboard.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <div class="brand">
+        <img src="./assets/logo-small.svg" alt="Kukhuri-Ka" class="brand__logo" />
+      </div>
+
+      <div class="header-actions">
+        <div class="stars">⭐ <strong id="starsCount">54</strong></div>
+        <div class="badge">🏅 <span>New Badge<br><strong>Super Reader</strong></span></div>
+        <button class="btn icon-btn" aria-label="Settings">⚙️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container dashboard">
+    <section class="welcome-card">
+      <div class="welcome-left">
+        <div class="avatar"> <img src="./assets/avatar-placeholder.jpg" alt="Child avatar"/></div>
+        <div class="greeting">
+          <h2>Hi, Ayush!</h2>
+          <p class="muted">Ready to play and learn today?</p>
+        </div>
+      </div>
+      <div class="welcome-right">
+        <div class="daily-reward">
+          <div class="label">DAILY REWARD</div>
+          <button id="openChest" class="btn btn--primary">Open Chest</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-row">
+      <article class="module module--wide">
+        <div class="module-inner">
+          <div class="module-meta">LETTERS & SOUNDS</div>
+          <h3>Alphabet Adventure</h3>
+          <p class="muted small">Explore the jungle and find hidden letters!</p>
+
+          <div class="progress-wrap">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-fill" style="width: 60%"></div>
+            </div>
+            <div class="progress-text">60%</div>
+          </div>
+
+          <div class="module-cta">
+            <button class="btn btn--play">▶️ <span>Play</span></button>
+          </div>
+        </div>
+      </article>
+
+      <aside class="module module--side">
+        <div class="module-inner small-card">
+          <h4>Word Builder</h4>
+          <p class="muted small">Build simple words with magic blocks</p>
+          <button class="btn btn--outline">Start Building</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="small-cards">
+      <button class="small-card">
+        <div class="icon">📚</div>
+        <div>Story Time</div>
+      </button>
+      <button class="small-card">
+        <div class="icon">🔢</div>
+        <div>Math Magic</div>
+      </button>
+    </section>
+
+    <section class="sticker-book">
+      <h4>My Sticker Book <a href="#" class="link small-link">View All →</a></h4>
+      <div class="sticker-strip">
+        <div class="sticker">🏆</div>
+        <div class="sticker">🚀</div>
+        <div class="sticker">🐾</div>
+        <div class="sticker locked">🔒</div>
+        <div class="sticker locked">🔒</div>
+        <div class="sticker locked">🔒</div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="./js/dashboard.js"></script>
+</body>
+</html>
