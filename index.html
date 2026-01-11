@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kukhuri-Ka | Word Builder</title>
+    <style>
+        /* Lightweight Optimization: Internal CSS to avoid extra HTTP requests */
+        :root {
+            --page-bg: #E8FCE3;
+            --frog-container-bg: #2A4730;
+            --check-btn: #00D600;
+            --tile-grid-bg: #F9D5D5;
+            --text-dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; /* Child-friendly fonts */
+            background-color: var(--page-bg);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1000px;
+        }
+
+        /* Top Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .home-btn {
+            background: #007AFF;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 0 #0056b3;
+        }
+
+        .level-info { text-align: center; }
+        .level-title { font-size: 24px; font-weight: bold; margin: 0; color: var(--text-dark); }
+        
+        .progress-section { display: flex; align-items: center; gap: 10px; }
+        .progress-bg { width: 150px; height: 15px; background: #ddd; border-radius: 10px; overflow: hidden; }
+        .progress-fill { width: 60%; height: 100%; background: #00D600; }
+
+        .star-box {
+            background: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Main Game Card */
+        .game-card {
+            background: white;
+            border-radius: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        /* Left Side: Frog Area */
+        .image-area {
+            background-color: var(--frog-container-bg);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #E8FCE3;
+            text-align: center;
+        }
+
+        .speech-bubble {
+            background: white;
+            color: black;
+            padding: 5px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            align-self: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .frog-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            margin: 15px 0;
+        }
+
+        .audio-icon-btn {
+            background: #00D600;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Right Side: Interaction Area */
+        .interaction-area {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .hint-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #FFED94;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .letter-slots {
+            display: flex;
+            gap: 12px;
+            margin: 40px 0 10px 0;
+        }
+
+        .slot {
+            width: 55px;
+            height: 55px;
+            background: #F9A45D;
+            border-radius: 10px;
+            box-shadow: inset 0 4px 4px rgba(0,0,0,0.1);
+        }
+
+        .instruction { font-weight: bold; margin-bottom: 25px; }
+
+        .tile-grid {
+            background-color: var(--tile-grid-bg);
+            padding: 20px;
+            border-radius: 25px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .tile {
+            background: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #d4b4b4;
+            transition: transform 0.1s;
+        }
+
+        .tile:active { transform: translateY(4px); box-shadow: none; }
+
+        .check-btn {
+            background: var(--check-btn);
+            color: white;
+            border: none;
+            padding: 15px 45px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #009e00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <a href="#" class="home-btn">🏠</a>
+        <div class="level-info">
+            <span style="color: #00D600; font-size: 14px;">LEVEL 1</span>
+            <p class="level-title">Animals</p>
+        </div>
+        <div class="progress-section">
+            <span style="font-size: 12px; font-weight: bold;">Progress 3/5</span>
+            <div class="progress-bg"><div class="progress-fill"></div></div>
+            <div class="star-box">⭐ 150</div>
+        </div>
+    </div>
+
+    <div class="game-card">
+        <div class="image-area">
+            <div class="speech-bubble">Ribbit!</div>
+            <img src="frog.webp" alt="Frog" class="frog-img">
+            <button class="audio-icon-btn">🔊</button>
+            <p style="margin-top: 20px; font-weight: bold;">What is the animal?</p>
+        </div>
+
+        <div class="interaction-area">
+            <button class="hint-btn">💡 Hint</button>
+            
+            <div class="letter-slots">
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+            </div>
+
+            <p class="instruction">Drag the letters to the box !</p>
+
+            <div class="tile-grid">
+                <button class="tile">T</button>
+                <button class="tile">F</button>
+                <button class="tile">S</button>
+                <button class="tile">R</button>
+                <button class="tile">O</button>
+                <button class="tile">G</button>
+                <button class="tile">B</button>
+                <button class="tile">A</button>
+            </div>
+
+            <button class="check-btn">check answer ✔</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Asset weight optimization: Reusable click sound
+    const clickSound = new Audio('pop.mp3');
+    document.querySelectorAll('.tile').forEach(button => {
+        button.addEventListener('click', () => {
+            clickSound.currentTime = 0;
+            clickSound.play();
+        });
+    });
+
+    function validate() {
+        alert("Correct! You found the word FROG. +10 Stars!");
+    }
+    
+    // Select the button and make it trigger the function
+    document.querySelector('.check-btn').onclick = validate;
+
+</script>
+
+</body>
+</html>
