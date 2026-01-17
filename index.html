@@ -14,6 +14,10 @@
             --slot-orange: #F9A45D;
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
             background-color: var(--page-bg);
@@ -22,58 +26,320 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 10px;
         }
 
-        .container { width: 95%; max-width: 1000px; }
+        .container { 
+            width: 100%; 
+            max-width: 1000px; 
+        }
 
         /* Header Styles */
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .home-btn { background: #007AFF; color: white; padding: 10px; border-radius: 5px; font-size: 24px; text-decoration: none; box-shadow: 0 4px 0 #0056b3; }
-        .level-title { font-size: 24px; font-weight: bold; margin: 0; color: var(--text-dark); }
-        .progress-bg { width: 120px; height: 12px; background: #ddd; border-radius: 10px; overflow: hidden; }
-        .progress-fill { width: 60%; height: 100%; background: #00D600; }
-        .star-box { background: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; display: flex; align-items: center; gap: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 20px; 
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .home-btn { 
+            background: #007AFF; 
+            color: white; 
+            padding: 10px 15px; 
+            border-radius: 5px; 
+            font-size: 20px; 
+            text-decoration: none; 
+            box-shadow: 0 4px 0 #0056b3;
+            transition: transform 0.1s;
+        }
+        
+        .home-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #0056b3;
+        }
+        
+        .level-info {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .level-title { 
+            font-size: 20px; 
+            font-weight: bold; 
+            margin: 5px 0 0 0; 
+            color: var(--text-dark); 
+        }
+        
+        .progress-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+        
+        .progress-bg { 
+            width: 120px; 
+            height: 12px; 
+            background: #ddd; 
+            border-radius: 10px; 
+            overflow: hidden; 
+        }
+        
+        .progress-fill { 
+            width: 60%; 
+            height: 100%; 
+            background: #00D600; 
+        }
+        
+        .star-box { 
+            background: white; 
+            padding: 5px 15px; 
+            border-radius: 20px; 
+            font-weight: bold; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+        }
 
         /* Game Layout */
         .game-card {
-            background: white; border-radius: 40px; display: grid; grid-template-columns: 1fr 1.2fr;
-            overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            background: white; 
+            border-radius: 30px; 
+            overflow: hidden; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
         }
 
         .image-area {
-            background-color: var(--frog-container-bg); padding: 40px;
-            display: flex; flex-direction: column; align-items: center; color: #E8FCE3; text-align: center;
+            background-color: var(--frog-container-bg); 
+            padding: 30px;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            color: #E8FCE3; 
+            text-align: center;
         }
 
-        .frog-img { width: 100%; max-width: 280px; border-radius: 20px; margin: 15px 0; }
+        .frog-img { 
+            width: 100%; 
+            max-width: 280px; 
+            border-radius: 20px; 
+            margin: 15px 0; 
+        }
 
         /* Interaction Area */
-        .interaction-area { padding: 40px; display: flex; flex-direction: column; align-items: center; position: relative; }
+        .interaction-area { 
+            padding: 30px 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
         
-        .letter-slots { display: flex; gap: 12px; margin: 40px 0 20px 0; }
+        .letter-slots { 
+            display: flex; 
+            gap: 10px; 
+            margin: 30px 0 20px 0; 
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
         .slot {
-            width: 60px; height: 60px; background: var(--slot-orange); border-radius: 10px;
-            box-shadow: inset 0 4px 4px rgba(0,0,0,0.1); display: flex;
-            justify-content: center; align-items: center; font-size: 28px; font-weight: bold; color: #2A4730;
+            width: 60px; 
+            height: 60px; 
+            background: var(--slot-orange); 
+            border-radius: 10px;
+            box-shadow: inset 0 4px 4px rgba(0,0,0,0.1); 
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            font-size: 28px; 
+            font-weight: bold; 
+            color: #2A4730;
+            cursor: pointer;
+            transition: transform 0.1s;
+            user-select: none;
+        }
+
+        .slot:active {
+            transform: scale(0.95);
+        }
+
+        .slot.filled {
+            background: white;
+        }
+
+        .slot.drag-over {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 214, 0, 0.5);
+        }
+
+        .instruction-text {
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
         }
 
         .tile-grid {
-            background-color: var(--tile-grid-bg); padding: 25px; border-radius: 25px;
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; width: 100%; box-sizing: border-box;
+            background-color: var(--tile-grid-bg); 
+            padding: 20px; 
+            border-radius: 25px;
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 12px; 
+            width: 100%; 
+            max-width: 400px;
+            margin: 20px 0;
         }
 
         .tile {
-            background: white; border: none; padding: 15px; border-radius: 8px;
-            font-size: 22px; font-weight: bold; cursor: grab; text-align: center;
-            box-shadow: 0 4px 0 #d4b4b4; transition: background 0.2s;
+            background: white; 
+            border: none; 
+            padding: 15px; 
+            border-radius: 8px;
+            font-size: 22px; 
+            font-weight: bold; 
+            cursor: grab; 
+            text-align: center;
+            box-shadow: 0 4px 0 #d4b4b4; 
+            transition: all 0.2s;
+            user-select: none;
         }
 
-        .tile:active { cursor: grabbing; }
+        .tile:active { 
+            cursor: grabbing;
+        }
+
+        .tile.used {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .tile.dragging {
+            opacity: 0.5;
+        }
+
+        .tile.touch-dragging {
+            position: fixed;
+            z-index: 1000;
+            opacity: 0.8;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .check-btn, .reset-btn {
+            color: white; 
+            border: none; 
+            padding: 15px 35px;
+            border-radius: 30px; 
+            font-size: 18px; 
+            font-weight: bold; 
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
 
         .check-btn {
-            background: var(--check-btn); color: white; border: none; padding: 15px 45px;
-            border-radius: 30px; font-size: 18px; font-weight: bold; margin-top: 30px; cursor: pointer;
+            background: var(--check-btn);
             box-shadow: 0 4px 0 #009e00;
+        }
+
+        .reset-btn {
+            background: #FF6B6B;
+            box-shadow: 0 4px 0 #cc5555;
+        }
+
+        .check-btn:active, .reset-btn:active {
+            transform: translateY(2px);
+        }
+
+        .check-btn:active {
+            box-shadow: 0 2px 0 #009e00;
+        }
+
+        .reset-btn:active {
+            box-shadow: 0 2px 0 #cc5555;
+        }
+
+        /* Desktop layout */
+        @media (min-width: 768px) {
+            .game-card {
+                display: grid; 
+                grid-template-columns: 1fr 1.2fr;
+                border-radius: 40px;
+            }
+
+            .image-area {
+                padding: 40px;
+            }
+
+            .interaction-area {
+                padding: 40px;
+            }
+
+            .level-title {
+                font-size: 24px;
+            }
+
+            .home-btn {
+                font-size: 24px;
+            }
+        }
+
+        /* Mobile layout */
+        @media (max-width: 767px) {
+            .header {
+                justify-content: space-around;
+            }
+
+            .level-info {
+                order: -1;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .slot {
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+            }
+
+            .tile {
+                padding: 12px;
+                font-size: 20px;
+            }
+
+            .tile-grid {
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .check-btn, .reset-btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .tile-grid {
+                grid-template-columns: repeat(4, 1fr);
+                max-width: 100%;
+            }
+
+            .slot {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+            }
         }
     </style>
 </head>
@@ -95,72 +361,247 @@
     <div class="game-card">
         <div class="image-area">
             <img src="frog.webp" alt="Frog" class="frog-img">
-            <p style="font-weight: bold;">What is the animal?</p>
+            <p style="font-weight: bold; font-size: 18px;">What is the animal?</p>
         </div>
 
         <div class="interaction-area">
-            <div class="letter-slots">
-                <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)" data-index="0"></div>
-                <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)" data-index="1"></div>
-                <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)" data-index="2"></div>
-                <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)" data-index="3"></div>
+            <div class="letter-slots" id="slots">
+                <div class="slot" data-index="0"></div>
+                <div class="slot" data-index="1"></div>
+                <div class="slot" data-index="2"></div>
+                <div class="slot" data-index="3"></div>
             </div>
 
-            <p style="font-weight: bold;">Drag the letters to the box!</p>
+            <p class="instruction-text">Drag the letters to the box!</p>
 
-            <div class="tile-grid">
-                <div class="tile" draggable="true" ondragstart="drag(event)" id="t1">T</div>
-                <div class="tile" draggable="true" ondragstart="drag(event)" id="t2">F</div>
-                <div class="tile" draggable="true" ondragstart="drag(event)" id="t3">S</div>
-                <div class="tile" draggable="true" ondragstart="drag(event)" id="t4">R</div>
-                <div class="tile" draggable="true" ondragstart="drag(event)" id="t5">O</div>
-                <div class="tile" draggable="true" ondragstart="drag(event)" id="t6">G</div>
-                <div class="tile" draggable="true" ondragstart="drag(event)" id="t7">B</div>
-                <div class="tile" draggable="true" ondragstart="drag(event)" id="t8">A</div>
+            <div class="tile-grid" id="tileGrid">
+                <div class="tile" draggable="true" data-letter="T">T</div>
+                <div class="tile" draggable="true" data-letter="F">F</div>
+                <div class="tile" draggable="true" data-letter="S">S</div>
+                <div class="tile" draggable="true" data-letter="R">R</div>
+                <div class="tile" draggable="true" data-letter="O">O</div>
+                <div class="tile" draggable="true" data-letter="G">G</div>
+                <div class="tile" draggable="true" data-letter="B">B</div>
+                <div class="tile" draggable="true" data-letter="A">A</div>
             </div>
 
-            <button class="check-btn" onclick="validate()">check answer ✔</button>
+            <div class="button-group">
+                <button class="reset-btn" onclick="resetGame()">Reset 🔄</button>
+                <button class="check-btn" onclick="validate()">Check Answer ✔</button>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
     let currentWord = ["", "", "", ""];
+    let draggedTile = null;
+    let touchClone = null;
 
-    function allowDrop(ev) {
-        ev.preventDefault();
+    // Initialize drag and drop
+    function initDragAndDrop() {
+        const tiles = document.querySelectorAll('.tile');
+        const slots = document.querySelectorAll('.slot');
+
+        // Desktop drag events
+        tiles.forEach(tile => {
+            tile.addEventListener('dragstart', handleDragStart);
+            tile.addEventListener('dragend', handleDragEnd);
+        });
+
+        slots.forEach(slot => {
+            slot.addEventListener('dragover', handleDragOver);
+            slot.addEventListener('dragleave', handleDragLeave);
+            slot.addEventListener('drop', handleDrop);
+            slot.addEventListener('click', handleSlotClick);
+        });
+
+        // Mobile touch events
+        tiles.forEach(tile => {
+            tile.addEventListener('touchstart', handleTouchStart, { passive: false });
+            tile.addEventListener('touchmove', handleTouchMove, { passive: false });
+            tile.addEventListener('touchend', handleTouchEnd, { passive: false });
+        });
     }
 
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.innerText);
-        ev.dataTransfer.setData("id", ev.target.id);
+    // Desktop Drag Handlers
+    function handleDragStart(e) {
+        if (this.classList.contains('used')) {
+            e.preventDefault();
+            return;
+        }
+        draggedTile = this;
+        this.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/html', this.innerHTML);
     }
 
-    function drop(ev) {
-        ev.preventDefault();
-        const letter = ev.dataTransfer.getData("text");
-        const tileId = ev.dataTransfer.getData("id");
-        const slotIndex = ev.target.getAttribute("data-index");
+    function handleDragEnd(e) {
+        this.classList.remove('dragging');
+        document.querySelectorAll('.slot').forEach(slot => {
+            slot.classList.remove('drag-over');
+        });
+    }
 
-        if (slotIndex !== null && ev.target.innerText === "") {
-            ev.target.innerText = letter;
-            ev.target.style.background = "white";
-            currentWord[slotIndex] = letter;
+    function handleDragOver(e) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        }
+        e.dataTransfer.dropEffect = 'move';
+        this.classList.add('drag-over');
+        return false;
+    }
+
+    function handleDragLeave(e) {
+        this.classList.remove('drag-over');
+    }
+
+    function handleDrop(e) {
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        }
+        e.preventDefault();
+
+        this.classList.remove('drag-over');
+
+        if (!draggedTile || draggedTile.classList.contains('used')) {
+            return false;
+        }
+
+        const slot = this;
+        if (slot.innerText === "") {
+            const slotIndex = slot.getAttribute('data-index');
+            const letter = draggedTile.getAttribute('data-letter');
             
-            // Hide the original tile once dropped
-            document.getElementById(tileId).style.visibility = "hidden";
+            slot.innerText = letter;
+            slot.classList.add('filled');
+            currentWord[slotIndex] = letter;
+            draggedTile.classList.add('used');
+            draggedTile.draggable = false;
+        }
+
+        return false;
+    }
+
+    // Mobile Touch Handlers
+    function handleTouchStart(e) {
+        if (this.classList.contains('used')) {
+            return;
+        }
+        
+        e.preventDefault();
+        draggedTile = this;
+        
+        const touch = e.touches[0];
+        const rect = this.getBoundingClientRect();
+        
+        // Create a clone for visual feedback
+        touchClone = this.cloneNode(true);
+        touchClone.classList.add('touch-dragging');
+        touchClone.style.width = rect.width + 'px';
+        touchClone.style.height = rect.height + 'px';
+        touchClone.style.left = (touch.clientX - rect.width / 2) + 'px';
+        touchClone.style.top = (touch.clientY - rect.height / 2) + 'px';
+        document.body.appendChild(touchClone);
+        
+        this.classList.add('dragging');
+    }
+
+    function handleTouchMove(e) {
+        if (!draggedTile || !touchClone) return;
+        
+        e.preventDefault();
+        const touch = e.touches[0];
+        
+        touchClone.style.left = (touch.clientX - touchClone.offsetWidth / 2) + 'px';
+        touchClone.style.top = (touch.clientY - touchClone.offsetHeight / 2) + 'px';
+    }
+
+    function handleTouchEnd(e) {
+        if (!draggedTile) return;
+        
+        e.preventDefault();
+        const touch = e.changedTouches[0];
+        
+        // Remove clone
+        if (touchClone) {
+            touchClone.remove();
+            touchClone = null;
+        }
+        
+        draggedTile.classList.remove('dragging');
+        
+        // Find element at touch point
+        const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
+        const slot = elementAtPoint?.closest('.slot');
+        
+        if (slot && slot.innerText === "" && !draggedTile.classList.contains('used')) {
+            const slotIndex = slot.getAttribute('data-index');
+            const letter = draggedTile.getAttribute('data-letter');
+            
+            slot.innerText = letter;
+            slot.classList.add('filled');
+            currentWord[slotIndex] = letter;
+            draggedTile.classList.add('used');
+            draggedTile.draggable = false;
+        }
+        
+        draggedTile = null;
+    }
+
+    // Click on slot to remove letter
+    function handleSlotClick(e) {
+        const slot = e.target;
+        if (slot.innerText !== "") {
+            const letter = slot.innerText;
+            const slotIndex = slot.getAttribute('data-index');
+            
+            // Find and restore the tile
+            document.querySelectorAll('.tile').forEach(tile => {
+                if (tile.getAttribute('data-letter') === letter && tile.classList.contains('used')) {
+                    tile.classList.remove('used');
+                    tile.draggable = true;
+                }
+            });
+            
+            // Clear slot
+            slot.innerText = "";
+            slot.classList.remove('filled');
+            currentWord[slotIndex] = "";
         }
     }
 
     function validate() {
-        if (currentWord.join("") === "FROG") {
+        const answer = currentWord.join("");
+        if (answer === "FROG") {
             alert("🌟 Correct! Great job spelling FROG! 🌟");
-            location.reload(); 
+            setTimeout(() => location.reload(), 500);
+        } else if (answer.length < 4) {
+            alert("⚠️ Please fill in all the letters!");
         } else {
             alert("❌ Not quite! Check your spelling and try again.");
-            location.reload(); 
         }
     }
+
+    function resetGame() {
+        // Clear all slots
+        document.querySelectorAll('.slot').forEach(slot => {
+            slot.innerText = "";
+            slot.classList.remove('filled');
+        });
+        
+        // Reset all tiles
+        document.querySelectorAll('.tile').forEach(tile => {
+            tile.classList.remove('used');
+            tile.draggable = true;
+        });
+        
+        // Reset word array
+        currentWord = ["", "", "", ""];
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initDragAndDrop);
 </script>
 
 </body>
